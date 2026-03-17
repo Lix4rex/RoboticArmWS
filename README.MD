@@ -40,13 +40,13 @@ The system then computes the corresponding **joint angles** required for the rob
 git clone https://github.com/Lix4rex/RoboticArmWS.git
 ```
 
-# Build the workspace
+### Build the workspace
 ./build.sh
 
-# Source the workspace
+### Source the workspace
 source install/setup.bash
 
-# Usage
+### Usage
 
 ### Launch the simulation
 ros2 launch robotic_arm sim.launch.py
