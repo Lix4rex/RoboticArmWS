@@ -46,7 +46,7 @@ git clone https://github.com/Lix4rex/RoboticArmWS.git
 # Source the workspace
 source install/setup.bash
 
-## Usage
+# Usage
 
 ### Launch the simulation
 ros2 launch robotic_arm sim.launch.py
