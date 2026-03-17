@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<robot name="simple_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+        
+        <xacro:property name="SCALE_FACTOR" value="1" />
+
+        <xacro:property name="base_height" value="${0.5*SCALE_FACTOR}" />
+        <xacro:property name="base_length" value="${2*SCALE_FACTOR}" />
+        <xacro:property name="base_width" value="${2*SCALE_FACTOR}" />
+
+
+        <xacro:property name="first_arm_height" value="${1*SCALE_FACTOR}" />
+        <xacro:property name="first_arm_length" value="${0.4*SCALE_FACTOR}" />
+        <xacro:property name="first_arm_width" value="${0.4*SCALE_FACTOR}" />
+
+
+        <xacro:property name="arm_height" value="${3*SCALE_FACTOR}" />
+        <xacro:property name="arm_length" value="${0.4*SCALE_FACTOR}" />
+        <xacro:property name="arm_width" value="${0.4*SCALE_FACTOR}" />
+
+</robot>

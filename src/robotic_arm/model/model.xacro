@@ -1,0 +1,167 @@
+<?xml version="1.0"?>
+<robot name="simple_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+        <xacro:include filename="$(find robotic_arm)/model/parameters.xacro"/>
+        <xacro:include filename="$(find robotic_arm)/model/gazebo.xacro"/>
+
+        <link name="base_link">
+                <inertial>
+                        <mass value="40"/>
+                        <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0" izz="0.1" />
+                </inertial>
+                <visual>
+                        <geometry>
+                                <box size="${base_length} ${base_width} ${base_height}"/>
+                        </geometry>
+                        <origin xyz="0 0 ${base_height/2}" rpy="0 0 0"/>
+                </visual>
+                <collision>
+                        <geometry>
+                                <box size="${base_length} ${base_width} ${base_height}"/>
+                        </geometry>
+                        <origin xyz="0 0 ${base_height/2}" rpy="0 0 0"/>
+                </collision>
+        </link>
+
+
+        <link name="first_arm_link">
+                <inertial>
+                        <mass value="1"/>
+                        <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0" izz="0.001" />
+                </inertial>
+                <visual>
+                        <geometry>
+                                <box size="${first_arm_length} ${first_arm_width} ${first_arm_height}"/>
+                        </geometry>
+                        <origin xyz="0 0 ${first_arm_height/2}" rpy="0 0 0"/>
+                </visual>
+                <collision>
+                        <geometry>
+                                <box size="${first_arm_length} ${first_arm_width} ${first_arm_height}"/>
+                        </geometry>
+                        <origin xyz="0 0 ${first_arm_height/2}" rpy="0 0 0"/>
+                </collision>
+        </link>
+
+        <joint name="first_arm_joint" type="revolute">
+                <origin xyz="0 0 ${base_height}" rpy="0 0 0"/>
+                <parent link="base_link"/>
+                <child link="first_arm_link"/>
+                <axis xyz="0 0 1"/>
+                <limit lower="-1.571" upper="1.571" effort="100" velocity="10"/>
+        </joint>
+
+
+        <link name="second_arm_link">
+                <inertial>
+                        <mass value="1"/>
+                        <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0" izz="0.001"/>
+                </inertial>
+                <visual>
+                        <geometry>
+                                <box size="${arm_length} ${arm_width} ${arm_height}"/>
+                        </geometry>
+                        <origin xyz="0 0 ${arm_height/2 - arm_height/8}" rpy="0 0 0"/>
+                </visual>
+                <collision>
+                        <geometry>
+                                <box size="${arm_length} ${arm_width} ${arm_height}"/>
+                        </geometry>
+                        <origin xyz="0 0 ${arm_height/2 - arm_height/8}" rpy="0 0 0"/>
+                </collision>
+        </link>
+
+        <joint name="second_arm_joint" type="revolute"> 
+                <origin xyz="0 ${first_arm_width} ${first_arm_height - first_arm_height/8}" rpy="0 0 0"/>
+                <parent link="first_arm_link"/>
+                <child link="second_arm_link"/>
+                <axis xyz="0 1 0"/>
+                <limit lower="-1.571" upper="1.571" effort="100" velocity="10"/>
+        </joint>
+
+
+        <link name="third_arm_link">
+                <inertial>
+                        <mass value="1"/>
+                        <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0" izz="0.001"/>
+                </inertial>
+                <visual>
+                        <geometry>
+                                <box size="${arm_length} ${arm_width} ${arm_height}"/>
+                        </geometry>
+                        <origin xyz="0 0 ${arm_height/2 - arm_height/8}" rpy="0 0 0"/>
+                </visual>
+                <collision>
+                        <geometry>
+                                <box size="${arm_length} ${arm_width} ${arm_height}"/>
+                        </geometry>
+                        <origin xyz="0 0 ${arm_height/2 - arm_height/8}" rpy="0 0 0"/>
+                </collision>
+        </link>
+
+        <joint name="third_arm_joint" type="revolute"> 
+                <origin xyz="0 ${-arm_width} ${arm_height - arm_height/8}" rpy="0 0 0"/>
+                <parent link="second_arm_link"/>
+                <child link="third_arm_link"/>
+                <axis xyz="0 1 0"/>
+                <limit lower="-1.571" upper="1.571" effort="100" velocity="10"/>
+        </joint>
+
+
+        <link name="fourth_arm_link">
+                <inertial>
+                        <mass value="1"/>
+                        <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0" izz="0.001"/>
+                </inertial>
+                <visual>
+                        <geometry>
+                                <box size="${arm_length} ${arm_width} ${arm_height}"/>
+                        </geometry>
+                        <origin xyz="0 0 ${arm_height/2 - arm_height/8}" rpy="0 0 0"/>
+                </visual>
+                <collision>
+                        <geometry>
+                                <box size="${arm_length} ${arm_width} ${arm_height}"/>
+                        </geometry>
+                        <origin xyz="0 0 ${arm_height/2 - arm_height/8}" rpy="0 0 0"/>
+                </collision>
+        </link>
+
+        <joint name="fourth_arm_joint" type="revolute"> 
+                <origin xyz="0 ${arm_width} ${arm_height - arm_height/8}" rpy="0 0 0"/>
+                <parent link="third_arm_link"/>
+                <child link="fourth_arm_link"/>
+                <axis xyz="0 1 0"/>
+                <limit lower="-1.571" upper="1.571" effort="100" velocity="10"/>
+        </joint>
+
+
+        <ros2_control name="RobotController" type="system">
+                <hardware>
+                        <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+                </hardware>
+
+                <joint name="first_arm_joint">
+                        <command_interface name="position"/>
+                        <state_interface name="position"/>
+                </joint>
+
+                <joint name="second_arm_joint">
+                        <command_interface name="position"/>
+                        <state_interface name="position"/>
+                </joint>
+
+                <joint name="third_arm_joint">
+                        <command_interface name="position"/>
+                        <state_interface name="position"/>
+                </joint>
+
+                <joint name="fourth_arm_joint">
+                        <command_interface name="position"/>
+                        <state_interface name="position"/>
+                </joint>
+
+        </ros2_control>
+
+</robot>
