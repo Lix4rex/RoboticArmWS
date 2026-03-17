@@ -35,8 +35,9 @@ The system then computes the corresponding **joint angles** required for the rob
 
 ## Installation
 
-```bash
 # Clone the repository
+
+```bash
 git clone https://github.com/Lix4rex/RoboticArmWS.git
 ```
 
