@@ -28,9 +28,9 @@ The system then computes the corresponding **joint angles** required for the rob
 
 ## Tech Stack
 
-- ROS 2  
-- Gazebo  
-- RViz (upcoming)  
+- ROS 2 - Jazzy  
+- Gazebo - Humble
+- RViz 
 - Python / C++  
 
 ## Installation
