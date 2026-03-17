@@ -1,11 +1,58 @@
-ROS2 and Gazebo simulation for a robotic arm
+# ROS 2 & Gazebo Simulation for a Robotic Arm
 
-What's the idea ?
+## Overview
 
-To manipulate the arm with inverse kinematic (we give a 3D position and the arm calculates the possible joints' angles).
+This project focuses on simulating and controlling a robotic arm using **ROS 2** and **Gazebo**.
 
-Next step is to manipulate it with ROS and visualize the result on Rviz and in real life.
+The main objective is to enable intuitive manipulation of the robotic arm through **inverse kinematics**, allowing users to control the end-effector position in 3D space.
 
+## Features
 
+- Robotic arm simulation in Gazebo  
+- Inverse kinematics control  
+- End-effector positioning using Cartesian coordinates  
+- Visualization with RViz (planned)  
 
-BUILDING UP...
+## Concept
+
+Instead of manually controlling each joint, the user provides a **target position (x, y, z)** in 3D space.  
+The system then computes the corresponding **joint angles** required for the robotic arm to reach that position.
+
+## Roadmap
+
+- [x] Basic robotic arm model  
+- [ ] Inverse kinematics implementation  
+- [ ] ROS 2 integration for control  
+- [ ] RViz visualization  
+- [ ] Real-world robotic arm control  
+
+## Tech Stack
+
+- ROS 2  
+- Gazebo  
+- RViz (upcoming)  
+- Python / C++  
+
+## Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/your-repo.git
+
+# Build the workspace
+./build.sh
+
+# Source the workspace
+source install/setup.bash
+
+## Usage
+
+### Launch the simulation
+ros2 launch <your_package> <your_launch_file>.py
+
+## Future Work
+
+The next step is to integrate full ROS 2 control pipelines and enable:
+
+- Real-time visualization in RViz
+- Interaction with real robotic hardware
