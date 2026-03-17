@@ -37,7 +37,7 @@ The system then computes the corresponding **joint angles** required for the rob
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/your-repo.git
+git clone https://github.com/Lix4rex/RoboticArmWS.git
 ```
 
 # Build the workspace
