@@ -57,3 +57,7 @@ The next step is to integrate full ROS 2 control pipelines and enable:
 
 - Real-time visualization in RViz
 - Interaction with real robotic hardware
+
+## Made BY
+
+Axel PARIS - Student at Centrale Lille - France
