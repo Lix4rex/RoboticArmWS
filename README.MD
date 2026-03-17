@@ -49,7 +49,7 @@ source install/setup.bash
 ## Usage
 
 ### Launch the simulation
-ros2 launch <your_package> <your_launch_file>.py
+ros2 launch robotic_arm sim.launch.py
 
 ## Future Work
 
