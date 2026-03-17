@@ -38,6 +38,7 @@ The system then computes the corresponding **joint angles** required for the rob
 ```bash
 # Clone the repository
 git clone https://github.com/your-username/your-repo.git
+```
 
 # Build the workspace
 ./build.sh
