@@ -6,16 +6,18 @@ import os
 
 packageName = "robotic_arm"
 
-xacroRelativePath        = "model/model.xacro"
-rvizRelativePath         = "config/config.rviz"
+xacroRelativePath                  = "model/model.xacro"
+rvizRelativePath                   = "config/config.rviz"
+controllerConfigRelativePath       = "config/params.yaml"
 
 
 def generate_launch_description():
 
     # ── Paths ────────────────────────────────────────────────────────────────
-    pkgPath           = launch_ros.substitutions.FindPackageShare(package=packageName).find(packageName)
-    xacroModelPath    = os.path.join(pkgPath, xacroRelativePath)
-    rvizConfigPath    = os.path.join(pkgPath, rvizRelativePath)
+    pkgPath               = launch_ros.substitutions.FindPackageShare(package=packageName).find(packageName)
+    xacroModelPath        = os.path.join(pkgPath, xacroRelativePath)
+    rvizConfigPath        = os.path.join(pkgPath, rvizRelativePath)
+    controllerConfigPath  = os.path.join(pkgPath, controllerConfigRelativePath)
 
     robot_desc        = Command(['xacro ', xacroModelPath])
     robot_description = {"robot_description": robot_desc}
@@ -125,7 +127,8 @@ def generate_launch_description():
 
     arm_controller = launch_ros.actions.Node(
         package="robotic_arm",
-        executable="arm_controller"
+        executable="arm_controller",
+        parameters = [controllerConfigPath]
     )
 
     # ── Description finale ───────────────────────────────────────────────────

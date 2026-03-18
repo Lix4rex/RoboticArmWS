@@ -12,10 +12,12 @@ find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(robot_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(Eigen3 REQUIRED)
 
 
 add_executable(arm_controller src/arm_controller.cpp)
 ament_target_dependencies(arm_controller rclcpp std_msgs robot_msgs sensor_msgs)
+target_link_libraries(arm_controller Eigen3::Eigen)
 
 install(TARGETS arm_controller
   DESTINATION lib/${PROJECT_NAME})
