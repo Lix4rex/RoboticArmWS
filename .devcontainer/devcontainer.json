@@ -22,8 +22,8 @@
 		// Wayland host
 		"--volume=/mnt/wslg:/mnt/wslg",
 		"--ipc=host",
-		// !!!!!!!! "--device=/dev/ttyUSB0:/dev/ttyUSB0",
-		// !!!!!!!! "--group-add=dialout",
+		"--device=/dev/ttyUSB0:/dev/ttyUSB0",
+		"--group-add=dialout",
 		// uncomment to use intel iGPU
 		// "--device=/dev/dri"
 		// Share user run time settings

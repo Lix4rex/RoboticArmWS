@@ -6,7 +6,7 @@ import os
 
 packageName = "robotic_arm"
 
-xacroRelativePath                  = "model/model.xacro"
+xacroRelativePath                  = "model/model.simu.xacro"
 rvizRelativePath                   = "config/config.rviz"
 controllerConfigRelativePath       = "config/params.yaml"
 

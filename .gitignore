@@ -3,3 +3,12 @@ install/*
 log/*
 site/*
 core
+
+
+src/miro-ROS-Agent/*.files
+src/miro-ROS-Agent/*.includes
+src/miro-ROS-Agent/*.config
+src/miro-ROS-Agent/*.creator
+src/miro-ROS-Agent/*.creator.user*
+src/miro-ROS-Agent/*.autosave
+src/miro-ROS-Agent/CMakeLists.txt.user

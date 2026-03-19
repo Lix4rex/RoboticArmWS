@@ -21,11 +21,6 @@ class ArmController : public rclcpp::Node{
                                 std::bind(&ArmController::target_position_callback, this, std::placeholders::_1)
                         );
 
-                        position_sub_ = this->create_subscription<std_msgs::msg::Float64MultiArray>(
-                                "/position_controller/commands", 10,
-                                std::bind(&ArmController::position_controller_callback, this, std::placeholders::_1)
-                        );
-
                         current_position = Eigen::Vector3d::Zero();
                         current_angle = Eigen::Vector4d::Zero();
 
@@ -112,15 +107,6 @@ class ArmController : public rclcpp::Node{
                         msg_input.data[3] = theta_4;
 
                         position_pub_->publish(msg_input);
-                }
-
-                void position_controller_callback(const std_msgs::msg::Float64MultiArray::SharedPtr position_msg){
-                        double first_arm_joint_position  = position_msg->data[0];
-                        double second_arm_joint_position = position_msg->data[1];
-                        double third_arm_joint_position  = position_msg->data[2];
-                        double fourth_arm_joint_position = position_msg->data[3];
-
-                        compute_3D_position(first_arm_joint_position, second_arm_joint_position, third_arm_joint_position, fourth_arm_joint_position);
                 }
 
                 void target_position_callback(const robot_msgs::msg::TargetPosition::SharedPtr target_msg){
