@@ -1,0 +1,5 @@
+ROS AGENT : 
+docker run -it --rm   --device=/dev/ttyUSB0   --net=host   microros/micro-ros-agent:jazzy   serial --dev /dev/ttyUSB0
+
+Interface de commande : 
+ros2 run robotic_arm interface.py

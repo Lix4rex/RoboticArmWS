@@ -22,6 +22,11 @@ target_link_libraries(arm_controller Eigen3::Eigen)
 install(TARGETS arm_controller
   DESTINATION lib/${PROJECT_NAME})
 
+install(PROGRAMS
+  src/interface.py
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 install(
   DIRECTORY launch model config
   DESTINATION share/${PROJECT_NAME}

@@ -76,7 +76,7 @@ class ArmController : public rclcpp::Node{
                 void compute_inverse_kinematic(Eigen::Vector3d target){
 
                         double alpha = 0.1;
-                        current_angle = Eigen::Vector4d::Zero();
+                        //current_angle = Eigen::Vector4d::Zero();
                         for (int i=0; i<MAX_ITER; i++){
                                 compute_3D_position(current_angle(0), current_angle(1), current_angle(2), current_angle(3));
 
@@ -97,18 +97,6 @@ class ArmController : public rclcpp::Node{
                         RCLCPP_INFO(this->get_logger(), "Angles: %.2f %.2f %.2f %.2f", current_angle(0), current_angle(1), current_angle(2), current_angle(3));
                 }
 
-                void pub_position_commands(double theta_1, double theta_2, double theta_3, double theta_4){
-                        auto msg_input = std_msgs::msg::Float64MultiArray();
-
-                        msg_input.data.resize(4);
-                        msg_input.data[0] = theta_1;
-                        msg_input.data[1] = theta_2;
-                        msg_input.data[2] = theta_3;
-                        msg_input.data[3] = theta_4;
-
-                        position_pub_->publish(msg_input);
-                }
-
                 void target_position_callback(const robot_msgs::msg::TargetPosition::SharedPtr target_msg){
                         double x_target = target_msg->x_target;
                         double y_target = target_msg->y_target;
@@ -123,6 +111,18 @@ class ArmController : public rclcpp::Node{
 
                         RCLCPP_INFO(this->get_logger(), "x_target=%.2f, y_target=%.2f z_target=%.2f", x_target, y_target, z_target);
 
+                }
+
+                void pub_position_commands(double theta_1, double theta_2, double theta_3, double theta_4){
+                        auto msg_input = std_msgs::msg::Float64MultiArray();
+
+                        msg_input.data.resize(4);
+                        msg_input.data[0] = theta_1;
+                        msg_input.data[1] = theta_2;
+                        msg_input.data[2] = theta_3;
+                        msg_input.data[3] = theta_4;
+
+                        position_pub_->publish(msg_input);
                 }
 
                 rclcpp::Subscription<robot_msgs::msg::TargetPosition>::SharedPtr target_position_sub_;
